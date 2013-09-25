@@ -37,6 +37,11 @@ thetaFromLengthsTest(3,4, pi/2)
 plot( 1:2, xlim=c(mn,mx), ylim=c(mn,mx), type="n",asp=1 )
 
 }
+
+canvas(20,25)
+```
+
+```{r}
 canvas(20,25)
   drawCircle <- function(x,y,r,col,border) {
     angs <- seq(0,2*pi,length=20)
