@@ -1,57 +1,49 @@
 
 
-````
-> countOdds <- function(x) sum(x %% 2)
-> countOdds (c(3,4,5,6,7,8))
-[1] 3
-`````
+```{r}
+countOdds <- function(x) sum(x %% 2)
+countOdds (c(3,4,5,6,7,8))
+```
 
-````
-> countEvens <- function(x) sum((x+1) %% 2)
-> countEvens(c(1,2,3,4,5,6))
-[1] 3
-`````
+```{r}
+countEvens <- function(x) sum((x+1) %% 2)
+countEvens(c(1,2,3,4,5,6))
+```
 
-`````
-> hypotenuseLength <- function(a,b) sqrt(a^2 + b^2)
-> hypotenuseLength(6,8)
-[1] 10
-`````
+```{r}
+hypotenuseLength <- function(a,b) sqrt(a^2 + b^2)
+hypotenuseLength(6,8)
+```
 
 
-```````
-> lawOfCosine <- function(a,b,theta) sqrt(a^2 + b^2 -2*a*b*cos(theta))
-> lawOfCosine(13,84,pi/2)
-[1] 85
-```````
+```{r}
+lawOfCosine <- function(a,b,theta) sqrt(a^2 + b^2 -2*a*b*cos(theta))
+lawOfCosine(13,84,pi/2)
+```
 
 
-````````
-> thetaFromLengths <- function(a,b,c) acos(sqrt((a^2 + b^2 - c^2))/(2*a*b))
-> thetaFromLenghts (8,15,17)
-[1] 1.570796
+```{r}
+thetaFromLengths <- function(a,b,c) acos(sqrt((a^2 + b^2 - c^2))/(2*a*b))
+thetaFromLengths (8,15,17)
+```
 
-``````
+```{r}
+thetaFromLengthsTest <- function(a,b,theta) theta- thetaFromLengths(a,b, lawOfCosine(a,b,theta))
+thetaFromLengthsTest(3,4, pi/2)
+```
 
-```````
-> thetaFromLenghtsTest <- function(a,b,theta) theta- thetaFromLengths(a,b, lawOfCosine(a,b,theta))
-> thetaFromLenghtsTest(3,4, pi/2)
-[1] 0
-
-`````
-
-`````{r}
+```{r}
  canvas <- function(mn=0,mx=100){
 plot( 1:2, xlim=c(mn,mx), ylim=c(mn,mx), type="n",asp=1 )
 
 }
 canvas(20,25)
-  drawCircle <- function(x,y,r,col) {
+  drawCircle <- function(x,y,r,col,border) {
     angs <- seq(0,2*pi,length=20)
     xpts<-x+r*cos(angs)
     ypts<-y+r*sin(angs)
-    polygon(xpts,ypts,col=col,border=NULL)
+    polygon(xpts,ypts,col=col,border=FALSE)
  }
  drawCircle(22,23,2,"red")
-```````
+```
 
