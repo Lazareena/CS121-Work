@@ -1,0 +1,17 @@
+```````{r}
+a= c(1:100)
+b= c(1:100)
+plot(a~b, type="n")
+angle= seq(0,2*pi, length=1000)
+d= 50 + 10*cos(angle)
+f= 50 + 10*sin(angle)
+polygon(d,f, col="red", border=FALSE)
+
+x= c(20,40,40,20,20) 
+y= c(20,20,40,40,20)
+polygon(x,y, col="yellow")
+
+c= c(65,75,80,70,60,65)
+d= c(20,20,40,60,40,20)
+polygon(c,d)
+``````````
