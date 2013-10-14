@@ -1,0 +1,73 @@
+```{r}
+reverser <- function(x){
+Alpha <- strsplit(x, split= NULL)
+Beta <- rev(Alpha[[1]])
+return(paste(Beta,collapse=""))
+}
+reverser("1 2 3 4 5")
+```
+
+```{r}
+reverser <- function(x){
+
+Beta <- rev(x)
+return(Beta)
+}
+reverser(1:5)
+```
+
+```{r}
+scrambler <- function(x){
+Alpha <- strsplit(x, split= NULL)
+Beta <- sample(Alpha[[1]])
+return(paste(Beta,collapse=""))
+ }
+scrambler("12345")
+```
+
+```{r}
+scrambler <- function(x){
+
+Beta <- sample(x)
+return(Beta)
+ }
+scrambler(1:5)
+```
+
+```{r}
+VowelBleeper <- function(input) {
+supersub <- gsub("[aeiou]","*",input)
+return(supersub)
+}
+VowelBleeper("dog")
+```
+
+```{r}
+L33t<- function(input) {
+sub <- chartr("e","3",input)
+sub2 <- chartr("o","0",sub)
+sub3 <- chartr("s","5",sub2)
+sub4 <- chartr("g","9",sub3)
+return(sub4)
+}
+L33t("go")
+
+x <- list("go", "pose")
+sapply(x,L33t)
+```
+
+```{r}
+L33t<- function(input) {
+x <- list(input)
+sub <- chartr("e","3",input)
+sub <- chartr("o","0",sub)
+sub <- chartr("s","5",sub)
+sub <- chartr("g","9",sub)
+sapply(x, sub)
+}
+
+L33t("go","pose")
+
+```
+
+

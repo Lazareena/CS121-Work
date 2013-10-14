@@ -1,0 +1,21 @@
+
+```{r}
+words <- readLines(url("http://dtkaplan.github.io/ScientificComputing/Syllabus/Daily/Day-07/word_list_moby_crossword-flat/word_list_moby_crossword.flat.txt"))
+length(words[grep("^.$",words)])
+length(words[grep("^..$",words)])
+length(words[grep("^...$",words)])
+
+
+length(words[grep("a",words)])
+length(words[grep("b",words)])
+length(words[grep("c",words)])
+```
+
+```{r}
+words <- readLines(url("http://dtkaplan.github.io/ScientificComputing/Syllabus/Daily/Day-07/word_list_moby_crossword-flat/word_list_moby_crossword.flat.txt"))
+crossword <- function(x) {
+     list <- grep(x,words) 
+     return((words)[list])
+         }
+crossword("may")
+```

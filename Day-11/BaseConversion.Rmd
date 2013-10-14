@@ -1,0 +1,17 @@
+```{r}
+toBase <- function(Z,b) {
+          sofar <- c()
+          repeat{
+          r <- Z%%b
+          sofar <- c(r,sofar)
+          Z <- (Z-r)/b
+
+          if (Z==0) break
+          }
+          
+          return(sofar)
+          }
+toBase(10,2)
+toBase(100,3)
+toBase(1000,16)
+```          
