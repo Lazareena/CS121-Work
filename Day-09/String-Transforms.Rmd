@@ -1,10 +1,9 @@
-```{r}
-reverser <- function(x){
-Alpha <- strsplit(x, split= NULL)
-Beta <- rev(Alpha[[1]])
-return(paste(Beta,collapse=""))
+````{r}
+reverse <- function(input) {
+ return( unlist(input)[length(input):1] )
 }
-reverser("1 2 3 4 5")
+
+reverse(1:5)
 ```
 
 ```{r}
@@ -14,15 +13,6 @@ Beta <- rev(x)
 return(Beta)
 }
 reverser(1:5)
-```
-
-```{r}
-scrambler <- function(x){
-Alpha <- strsplit(x, split= NULL)
-Beta <- sample(Alpha[[1]])
-return(paste(Beta,collapse=""))
- }
-scrambler("12345")
 ```
 
 ```{r}
@@ -43,30 +33,41 @@ VowelBleeper("dog")
 ```
 
 ```{r}
-L33t<- function(input) {
+VowelBleeperOnOneString <- function(input) {
+supersub <- gsub("[aeiou]","*",input)
+return(supersub)
+}
+VowelBleeperOnOneString("dog")
+```
+
+```{r}
+VowelBleeper <- function(input){
+             sapply(input, FUN=VowelBleeperOnOneString)
+             }
+VowelBleeper(c("mom","dad"))
+
+```
+
+```{r}
+L33tOnOneString<- function(input) {
 sub <- chartr("e","3",input)
 sub2 <- chartr("o","0",sub)
 sub3 <- chartr("s","5",sub2)
 sub4 <- chartr("g","9",sub3)
 return(sub4)
 }
-L33t("go")
+L33tOnOneString("go")
 
-x <- list("go", "pose")
-sapply(x,L33t)
+x <- c("go", "pose", "halloween")
+sapply(x,FUN=L33tOnOneString)
 ```
 
 ```{r}
 L33t<- function(input) {
-x <- list(input)
-sub <- chartr("e","3",input)
-sub <- chartr("o","0",sub)
-sub <- chartr("s","5",sub)
-sub <- chartr("g","9",sub)
-sapply(x, sub)
+  sapply(input, FUN=L33tOnOneString)
 }
 
-L33t("go","pose")
+L33t(c("go","pose"))
 
 ```
 
