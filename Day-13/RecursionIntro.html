@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-<title>Deliverables for COMP 121</title>
+<title></title>
 
 <style type="text/css">
 body, td {
@@ -182,214 +182,72 @@ hljs.initHighlightingOnLoad();
 </head>
 
 <body>
-<h1>Deliverables for COMP 121</h1>
+<p>Write another form of the loop &hellip;</p>
 
-<p>This page lists the deliverables for Comp 121 and provides links to the HTML and RMD files on your GitHub site. </p>
+<p>Where the state is maintained by a vector of \( n+1 \) slots, with the first two slots initialized to 0 and 1 respectively.</p>
 
-<p><strong>You must recompile this document to see updates!</strong></p>
-
-<p>This is BrowseDeliverables <strong>v0.1</strong>.  Confirm that the line below <code>gitID</code> matches this version number, otherwise get an update <a href="http://dtkaplan.github.io/ScientificComputing/Assignments/BrowseDeliverables.Rmd">here</a> and modify the <code>gitID</code>.</p>
-
-<pre><code class="r"># Enter your GitHub ID here
-gitID &lt;- &quot;Lazareena&quot;
+<pre><code class="r">fibLoop &lt;- function(n) {
+    # initialize state
+    Ffirst &lt;- 0
+    Fsecond &lt;- 1
+    # for() both sets some of the state and controls termination
+    for (k in 3:n) {
+        # update the state
+        newF &lt;- Ffirst + Fsecond
+        Ffirst &lt;- Fsecond
+        Fsecond &lt;- newF
+    }
+    # Finished! Return the relevant aspect of the state
+    return(newF)
+}
+fibLoop(5)
 </code></pre>
 
-<style>
-IMG.thumbpage {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    border-style: outset
+<pre><code>## [1] 3
+</code></pre>
+
+<p>Write a recursive function to add up the numbers from \( n \) to zero.</p>
+
+<pre><code class="r">
+AddNSeq &lt;- function(n) {
+
+    if (n == 0) {
+        return(0)
     }
-span.border {
-border: thick solid #CCCCCC;
+    if (n == 1) {
+        return(1)
+    }
+
+    return(AddNSeq(n - 1) + n)
 }
-</style>
+AddNSeq(5)
+</code></pre>
 
-<p></style></p>
+<pre><code>## [1] 15
+</code></pre>
 
-<p>Written for BrowseDeliverables <strong>v0.1</strong>.</p>
+<p>Write a recursive function to add up all the numbers in a vector.  Hint: to simplify, index the vector with <code>[-1]</code></p>
 
-<p>These deliverables are more or less in reverse chronological order.</p>
+<pre><code class="r">addRecursively &lt;- function(v) {
+    if (0 == length(v)) 
+        return(0)
+    return(addRecursively(v[-1]) + v[1])
+}
 
-<p>The links let you view your files as they appear on GitHub.  To edit and update your work, use the RStudio editor and the standard from RStudio: </p>
+addRecursively(c(1, 3, 5))
+</code></pre>
 
-<blockquote>
-<p>compile -&gt; stage -&gt; commit -&gt; push.</p>
-</blockquote>
+<pre><code>## [1] 9
+</code></pre>
 
-<p>&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;&hellip;</p>
+<p>function(v){
+if (length(v)&lt;= 1) return(v)
+mid &lt;- v[ceiling(runif(1,min=2),max=length(v)))]
+mids &lt;- v[v==mid]
+left &lt;- v[lessthan(v,mid)]
+right &lt;- v[lessthan(mid,v)]</p>
 
-<h2>Reading <em>Huck Finn</em></h2>
-
-<p>This is a multi-step project.</p>
-
-<ul>
-<li><a href="InteractiveHuckFinn.html">Overall goal</a></li>
-</ul>
-
-<h3>Subdeliverable I</h3>
-
-<p>Write an Rmd file that compiles a vector of words into HTML text, highlighting the individual words and giving a <span class="border" title="like this tooltip">tooltip</span> for each word.</p>
-
-<ul>
-<li><a href="http://dtkaplan.github.io/ScientificComputing/Assignments/ToolTips.html">Assignment</a>.<br/></li>
-<li>Repository Path: <code>HuckFinn/ToolTips.[html | Rmd]</code></li>
-<li>Your Files: <a href="http://Lazareena.github.io/CS121-Work/HuckFinn/ToolTips.html">view HTML</a>; <a href="http://Lazareena.github.io/CS121-Work/HuckFinn/ToolTips.Rmd">raw Rmd</a> </li>
-</ul>
-
-<p><a href='http://Lazareena.github.io/CS121-Work/HuckFinn/ToolTips.html'><img class='thumbpage' src='http://img.bitpixels.com/getthumbnail?code=75555&url=Lazareena.github.io/CS121-Work/HuckFinn/ToolTips.html&size=200'></a></p>
-
-<h2>Recursion</h2>
-
-<p>Numerical Integration and Plotting through Recursive Partioning.</p>
-
-<p>Although the instructions are quite long, they are mostly just a narrative introducing the material.  </p>
-
-<ul>
-<li><a href="http://dtkaplan.github.io/ScientificComputing/Assignments/RecursionIntro.html">Assignment</a>.  You should work from the Rmd template from which assignment was generated, adding in your own work to that standard document. <a href="http://dtkaplan.github.io/ScientificComputing/Assignments/RecursionIntro.Rmd">link to Template</a><br/></li>
-<li>Repository Path: <code>Day-13/RecursionIntro.[html | Rmd]</code></li>
-<li>Your Files: <a href="http://Lazareena.github.io/CS121-Work/Day-13/RecursionIntro.html">view HTML</a>; <a href="http://Lazareena.github.io/CS121-Work/Day-13/RecursionIntro.Rmd">raw Rmd</a> </li>
-</ul>
-
-<p><a href='http://Lazareena.github.io/CS121-Work/Day-13/RecursionIntro.html'><img class='thumbpage' src='http://img.bitpixels.com/getthumbnail?code=75555&url=Lazareena.github.io/CS121-Work/Day-13/RecursionIntro.html&size=200'></a></p>
-
-<h2>Loops</h2>
-
-<h3>Side Effects and Inputs</h3>
-
-<p>Studying human response latency</p>
-
-<ul>
-<li><a href="http://dtkaplan.github.io/ScientificComputing/Assignments/InteractingWithLoops.html">Assignment</a></li>
-<li>Repository Path: <code>Day-12/InteractingWithLoops.[html | Rmd]</code></li>
-<li>Your Files: <a href="http://Lazareena.github.io/CS121-Work/Day-12/InteractingWithLoops.html">view HTML</a>; <a href="http://Lazareena.github.io/CS121-Work/Day-12/InteractingWithLoops.Rmd">raw Rmd</a> </li>
-</ul>
-
-<p><a href='http://Lazareena.github.io/CS121-Work/Day-12/InteractingWithLoops.html'><img class='thumbpage' src='http://img.bitpixels.com/getthumbnail?code=75555&url=Lazareena.github.io/CS121-Work/Day-12/InteractingWithLoops.html&size=200'></a></p>
-
-<h3>Exercises with Loops</h3>
-
-<p>Converting numbers to and from different bases.</p>
-
-<ul>
-<li><a href="http://dtkaplan.github.io/ScientificComputing/Assignments/BaseConversion.html">Assignment</a></li>
-<li>Repository Path: <code>Day-11/BaseConversion.[html | Rmd]</code></li>
-<li>Your Files: <a href="http://Lazareena.github.io/CS121-Work/Day-11/BaseConversion.html">view HTML</a>; <a href="http://Lazareena.github.io/CS121-Work/Day-11/BaseConversion.Rmd">raw Rmd</a> </li>
-</ul>
-
-<p><a href='http://Lazareena.github.io/CS121-Work/Day-11/BaseConversion.html'><img class='thumbpage' src='http://img.bitpixels.com/getthumbnail?code=75555&url=Lazareena.github.io/CS121-Work/Day-11/BaseConversion.html&size=200'></a></p>
-
-<h2>Functions</h2>
-
-<h3>Ciphers</h3>
-
-<p>Constructing a Substitution Cipher</p>
-
-<ul>
-<li><a href="http://dtkaplan.github.io/ScientificComputing/Assignments/SubstitutionCypher.html">Assignment</a></li>
-<li>Repository Path: <code>Day-11/SubstitutionCypher.[html | Rmd]</code></li>
-<li>Your Files: <a href="http://Lazareena.github.io/CS121-Work/Day-11/SubstitutionCypher.html">view HTML</a>; <a href="http://Lazareena.github.io/CS121-Work/Day-11/SubstitutionCypher.Rmd">raw Rmd</a> </li>
-</ul>
-
-<p><a href='http://Lazareena.github.io/CS121-Work/Day-11/SubstitutionCypher.html'><img class='thumbpage' src='http://img.bitpixels.com/getthumbnail?code=75555&url=Lazareena.github.io/CS121-Work/Day-11/SubstitutionCypher.html&size=200'></a></p>
-
-<h3>String Transformations</h3>
-
-<ul>
-<li><a href="http://dtkaplan.github.io/ScientificComputing/Assignments/stringTransforms.html">Assignment</a></li>
-<li>Repository Path: <code>Day-09/String-Transforms.[html | Rmd]</code></li>
-<li>Your Files: <a href="http://Lazareena.github.io/CS121-Work/Day-09/String-Transforms.html">view HTML</a>; <a href="http://Lazareena.github.io/CS121-Work/Day-09/String-Transforms.Rmd">raw Rmd</a> </li>
-</ul>
-
-<p><a href='http://Lazareena.github.io/CS121-Work/Day-09/String-Transforms.html'><img class='thumbpage' src='http://img.bitpixels.com/getthumbnail?code=75555&url=Lazareena.github.io/CS121-Work/Day-09/String-Transforms.html&size=200'></a></p>
-
-<h3>Pattern matching in character strings, <code>grep()</code></h3>
-
-<ul>
-<li><a href="http://dtkaplan.github.io/ScientificComputing/Assignments/Crosswords-and-Scrabble.html">Assignment</a></li>
-<li>Repository Path: <code>Day-07/Crosswords-and-Scrabble.[html | Rmd]</code></li>
-<li>Your Files: <a href="http://Lazareena.github.io/CS121-Work/Day-07/Crosswords-and-Scrabble.html">view HTML</a>; <a href="http://Lazareena.github.io/CS121-Work/Day-07/Crosswords-and-Scrabble.Rmd">raw Rmd</a> </li>
-</ul>
-
-<p><a href='http://Lazareena.github.io/CS121-Work/Day-07/Crosswords-and-Scrabble.html'><img class='thumbpage' src='http://img.bitpixels.com/getthumbnail?code=75555&url=Lazareena.github.io/CS121-Work/Day-07/Crosswords-and-Scrabble.html&size=200'></a></p>
-
-<h3>Numbers and Strings</h3>
-
-<ul>
-<li><a href="http://dtkaplan.github.io/ScientificComputing/Assignments/Numbers-and-Strings.html">Assignment</a></li>
-<li>Repository Path: <code>Day-06/Numbers-and-Strings.[html | Rmd]</code></li>
-<li>Your Files: <a href="http://Lazareena.github.io/CS121-Work/Day-06/Numbers-and-Strings.html">view HTML</a>; <a href="http://Lazareena.github.io/CS121-Work/Day-06/Numbers-and-Strings.Rmd">raw Rmd</a> </li>
-</ul>
-
-<p><a href='http://Lazareena.github.io/CS121-Work/Day-06/Numbers-and-Strings.html'><img class='thumbpage' src='http://img.bitpixels.com/getthumbnail?code=75555&url=Lazareena.github.io/CS121-Work/Day-06/Numbers-and-Strings.html&size=200'></a></p>
-
-<h3>Functions for Graphics</h3>
-
-<ul>
-<li><a href="http://dtkaplan.github.io/ScientificComputing/Assignments/Functions-and-Graphics.html">Assignment</a></li>
-<li>Repository Path: <code>Day-04/Functions-and-Graphics.[html | Rmd]</code></li>
-<li>Your Files: <a href="http://Lazareena.github.io/CS121-Work/Day-04/Functions-and-Graphics.html">view HTML</a>; <a href="http://Lazareena.github.io/CS121-Work/Day-04/Functions-and-Graphics.Rmd">raw Rmd</a> </li>
-</ul>
-
-<p><a href='http://Lazareena.github.io/CS121-Work/Day-04/Functions-and-Graphics.html'><img class='thumbpage' src='http://img.bitpixels.com/getthumbnail?code=75555&url=Lazareena.github.io/CS121-Work/Day-04/Functions-and-Graphics.html&size=200'></a></p>
-
-<h2>Basic Graphics</h2>
-
-<h3>Polygons</h3>
-
-<ul>
-<li><a href="http://dtkaplan.github.io/ScientificComputing/Syllabus/Daily/Day-03/polygonActivity.html">Assignment</a></li>
-<li>Repository Path: <code>Day-02/polygonActivity.[html | Rmd]</code></li>
-<li>Your Files: <a href="http://Lazareena.github.io/CS121-Work/Day-02/polygonActivity.html">view HTML</a>; <a href="http://Lazareena.github.io/CS121-Work/Day-02/polygonActivity.Rmd">raw Rmd</a> </li>
-</ul>
-
-<p><a href='http://Lazareena.github.io/CS121-Work/Day-02/polygonActivity.html'><img class='thumbpage' src='http://img.bitpixels.com/getthumbnail?code=75555&url=Lazareena.github.io/CS121-Work/Day-02/polygonActivity.html&size=200'></a></p>
-
-<h2>Deploying to GitHub</h2>
-
-<ul>
-<li>Place an <code>index.html</code> file (compiled from <code>.Rmd</code>) on the <code>gh-pages</code> branch of your GitHub site.  This becomes the &ldquo;front page&rdquo; of your site.</li>
-<li>Repository Path: <code>index.[html | Rmd]</code></li>
-<li>Your Files: <a href="http://Lazareena.github.io/CS121-Work/index.html">view HTML</a>; <a href="http://Lazareena.github.io/CS121-Work/index.Rmd">raw Rmd</a> </li>
-</ul>
-
-<p><a href='http://Lazareena.github.io/CS121-Work/index.html'><img class='thumbpage' src='http://img.bitpixels.com/getthumbnail?code=75555&url=Lazareena.github.io/CS121-Work/index.html&size=200'></a></p>
-
-<p>The main test is that the links above should work.
-I encourage you to update your front page, that is, the <code>index.Rmd</code> -&gt; <code>index.html</code> as the semester proceeds.  It&#39;s a potentially valuable resource in advertising your skills.  Things you may want to include:</p>
-
-<ul>
-<li>a brief biography or resume-type listing</li>
-<li>highlighted links to assignments on which you did a really good job.</li>
-<li>a link to you final project (which will be an interactive, web-based GUI)</li>
-<li>links to outside resources you found useful</li>
-</ul>
-
-<h2>Markdown and \( \LaTeX \)</h2>
-
-<h3>Biography</h3>
-
-<ul>
-<li>Your biography including a work/professional picture.</li>
-<li>Repository Path: <code>Day-01/biography.[html | Rmd]</code></li>
-<li>Your Files: <a href="http://Lazareena.github.io/CS121-Work/Day-01/biography.html">view HTML</a>; <a href="http://Lazareena.github.io/CS121-Work/Day-01/biography.Rmd">raw Rmd</a> </li>
-</ul>
-
-<p><a href='http://Lazareena.github.io/CS121-Work/Day-01/biography.html'><img class='thumbpage' src='http://img.bitpixels.com/getthumbnail?code=75555&url=Lazareena.github.io/CS121-Work/Day-01/biography.html&size=200'></a></p>
-
-<h3>Equations</h3>
-
-<ul>
-<li>An Rmd -&gt; html document giving the equations in a textbook.
-<em>Calculus Made Easy</em> <a href="https://play.google.com/books/reader?id=BrhBAAAAYAAJ&amp;printsec=frontcover&amp;output=reader&amp;authuser=0&amp;hl=en&amp;pg=GBS.PA25">Exercises I</a> and <a href="https://play.google.com/books/reader?id=BrhBAAAAYAAJ&amp;printsec=frontcover&amp;output=reader&amp;authuser=0&amp;hl=en&amp;pg=GBS.PA205">Exercises XVII</a></li>
-<li>Repository Path: <code>Day-01/equations.[html | Rmd]</code></li>
-<li>Your Files: <a href="http://Lazareena.github.io/CS121-Work/Day-01/equations.html">view HTML</a>; <a href="http://Lazareena.github.io/CS121-Work/Day-01/equations.Rmd">raw Rmd</a> </li>
-</ul>
-
-<p><a href='http://Lazareena.github.io/CS121-Work/Day-01/equations.html'><img class='thumbpage' src='http://img.bitpixels.com/getthumbnail?code=75555&url=Lazareena.github.io/CS121-Work/Day-01/equations.html&size=200'></a></p>
-
-<p><a href='http://www.bitpixels.com/'>Website thumbnails provided by BitPixels</a></p>
+<p>}</p>
 
 </body>
 

@@ -1,0 +1,57 @@
+Write another form of the loop ...
+
+Where the state is maintained by a vector of $n+1$ slots, with the first two slots initialized to 0 and 1 respectively.
+
+```{r}
+fibLoop <- function(n) {
+  # initialize state
+  Ffirst <- 0  
+  Fsecond <- 1
+  # for() both sets some of the state and controls termination
+  for (k in 3:n) { 
+    # update the state
+    newF <- Ffirst + Fsecond
+    Ffirst <- Fsecond
+    Fsecond <- newF
+    }
+  # Finished! Return the relevant aspect of the state
+  return( newF )
+  }
+fibLoop(5)
+```
+
+Write a recursive function to add up the numbers from $n$ to zero.
+
+```{r}
+
+AddNSeq <- function(n) {
+
+if (n==0) {return(0)}
+if(n==1) {return(1)}
+
+return(AddNSeq(n-1)+n)
+}
+AddNSeq(5)
+```
+
+Write a recursive function to add up all the numbers in a vector.  Hint: to simplify, index the vector with `[-1]`
+
+```{r}
+addRecursively <- function(v) {
+  if (0 ==length(v)) return(0)
+  return(addRecursively(v[-1]) + v[1])
+  }
+
+addRecursively(c(1,3,5))
+```
+
+
+
+
+
+
+
+
+
+
+
