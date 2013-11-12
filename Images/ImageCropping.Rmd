@@ -1,0 +1,47 @@
+```{r}
+require(devtools)  # install if necessary
+install_url("http://dtkaplan.github.io/ScientificComputing/Resources/COMP121_0.1.tar.gz")
+require(COMP121)
+puppy <- readPNG(getURLContent("http://dtkaplan.github.io/ScientificComputing/Resources/Images/mindo.png"))
+dim(puppy)
+
+canvas(x = c(1,220), y=c(1,220), asp=1)
+rasterImage(puppy,1,1,216,198)
+```
+```{r}
+canvas(x = c(1,220), y=c(1,220), asp=1)
+ paw <-puppy[160:198, 1:70,]
+rasterImage(paw,1,1,70,38)
+```
+```{r}
+canvas(x = c(1,220), y=c(1,220), asp=1)
+face <- puppy[1:120,80:216,]
+rasterImage(face,1,1,136,120)
+```
+```{r}
+canvas(x = c(1,220), y=c(1,220), asp=1)
+tag <- puppy[120:140,90:130,]
+rasterImage(tag,1,1,40,20)
+```
+
+
+
+```{r}
+red   <- puppy[,,1]
+green <- puppy[,,2]
+blue  <- puppy[,,3]
+
+weirdPuppy <- array( c(green,blue,red), dim=c(dim(red),3))
+framed <- cbind( red[,1:20], red , red[,197:216] )
+canvas(x=c(1,40+216),y=c(1,198), asp=1)
+
+rasterImage(framed, 1, 1,216+40, 198)
+```
+```{r}
+red <- puppy[,,1]
+framed <- cbind( red[,1:20], red, red[,197:216] )
+canvas(x=c(1,40+216),y=c(1,198), asp=1)
+framed2 <- rbind( framed[1:20,], framed, framed[179:198,])
+canvas(x=c(1,40+216),y=c(1,40+198), asp=1)
+rasterImage(framed2, 1, 1, 40+216, 40+198)
+```
