@@ -240,14 +240,71 @@ addRecursively(c(1, 3, 5))
 <pre><code>## [1] 9
 </code></pre>
 
-<p>function(v){
-if (length(v)&lt;= 1) return(v)
-mid &lt;- v[ceiling(runif(1,min=2),max=length(v)))]
-mids &lt;- v[v==mid]
-left &lt;- v[lessthan(v,mid)]
-right &lt;- v[lessthan(mid,v)]</p>
+<pre><code class="r">simpleRiemann &lt;- function(f, a = 0, b = 1, n = 3) {
+    rectangleWidth = (b - a)/n
+    midpoints &lt;- seq(a + rectangleWidth/2, b - rectangleWidth/2, length = n)
+    rectangleAreas &lt;- sapply(midpoints, f) * rectangleWidth
+    return(sum(rectangleAreas))
+}
+</code></pre>
 
-<p>}</p>
+<pre><code class="r">integrateRiemann &lt;- function(f, a = 0, b = 1) {
+    nbins &lt;- 5
+    biggerBins &lt;- simpleRiemann(f, a = a, b = b, n = nbins)
+    for (k in 1:5) {
+        nbins &lt;- nbins * 10  # much smaller bins
+        smallerBins &lt;- simpleRiemann(f, a = a, b = b, n = nbins)
+        if (abs(smallerBins - biggerBins) &lt; 1e-05) 
+            break
+        biggerBins &lt;- smallerBins
+    }
+    return(smallerBins)
+}
+integrateRiemann(function(x) {
+    3 * x
+}, a = 0, b = 10)
+</code></pre>
+
+<pre><code>## [1] 150
+</code></pre>
+
+<pre><code class="r">integrateRecursive &lt;- function(f, a = 0, b = 1) {
+    bigBins &lt;- simpleRiemann(f, a = a, b = b, n = 5)
+    smallBins &lt;- simpleRiemann(f, a = a, b = b, n = 10)
+    if (abs(bigBins - smallBins) &lt; 1e-05) 
+        return(smallBins) else {
+        mid &lt;- (a + b)/2
+        total &lt;- integrateRecursive(f, a = a, b = mid) + integrateRecursive(f, 
+            a = mid, b = b)
+        return(total)
+    }
+}
+integrateRecursive(function(x) {
+    3 * x
+}, a = 0, b = 10)
+</code></pre>
+
+<pre><code>## [1] 150
+</code></pre>
+
+<pre><code class="r">integrateRecursive &lt;- function(f, a = 0, b = 1) {
+    bigBins &lt;- integrateRiemann(f, a = a, b = b, n = 5)
+    smallBins &lt;- integrateRiemann(f, a = a, b = b, n = 10)
+    if (abs(bigBins - smallBins) &lt; 1e-05) 
+        return(smallBins) else {
+        mid &lt;- (a + b)/2
+        total &lt;- integrateRecursive(f, a = a, b = mid) + integrateRecursive(f, 
+            a = mid, b = b)
+        return(total)
+    }
+}
+integrateRecursive(function(x) {
+    3 * x
+}, a = 0, b = 10)
+</code></pre>
+
+<pre><code>## Error: unused argument (n = 5)
+</code></pre>
 
 </body>
 

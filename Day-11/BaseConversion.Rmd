@@ -20,11 +20,37 @@ Given a character vector of digits and a numerical base
 
 ```{r}
 baseToNumeric <- function(Nvec,b) {
-  howMany <- length(Nvec)
+  howMany <- length(as.character(Nvec))
   herdsize <- b^((howMany-1):0)
-  return(sum(as.numeric(Nvec)*herdsize))
+  count <- 1 
+  finalAnswer <- 0
+  for(k in 1:howMany) {
+    answer <- Nvec[k] * herdsize[count]
+    finalAnswer <- finalAnswer + answer
+    count <- count + 1
+  } 
+  
+  return(howMany)
 } 
 baseToNumeric(1010,2)
+
+```
+
+```{r}
+baseToNumeric <- function(Nvec,b) {
+  howMany <- strsplit(Nvec, split=NULL)
+  herdsize <- b^((howMany-1):0)
+  count <- 1 
+  finalAnswer <- 0
+  for(k in 1:howMany) {
+    answer <- Nvec[k] * herdsize[count]
+    finalAnswer <- finalAnswer + answer
+    count <- count + 1
+  } 
+  
+  return(herdsize)
+} 
+baseToNumeric("1010",2)
 
 ```
 

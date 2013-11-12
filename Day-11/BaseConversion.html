@@ -4,7 +4,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 
-<title></title>
+<title>As a loop</title>
 
 <style type="text/css">
 body, td {
@@ -207,6 +207,66 @@ toBase(10, 2)
 </code></pre>
 
 <pre><code>## [1]  3 14  8
+</code></pre>
+
+<p>Given a character vector of digits and a numerical base</p>
+
+<pre><code class="r">baseToNumeric &lt;- function(Nvec, b) {
+    howMany &lt;- length(as.character(Nvec))
+    herdsize &lt;- b^((howMany - 1):0)
+    count &lt;- 1
+    finalAnswer &lt;- 0
+    for (k in 1:howMany) {
+        answer &lt;- Nvec[k] * herdsize[count]
+        finalAnswer &lt;- finalAnswer + answer
+        count &lt;- count + 1
+    }
+
+    return(herdsize)
+}
+baseToNumeric(1010, 2)
+</code></pre>
+
+<pre><code>## [1] 1
+</code></pre>
+
+<pre><code class="r">baseToNumeric &lt;- function(Nvec, b) {
+    howMany &lt;- strsplit(Nvec, split = NULL)
+    herdsize &lt;- b^((howMany - 1):0)
+    count &lt;- 1
+    finalAnswer &lt;- 0
+    for (k in 1:howMany) {
+        answer &lt;- Nvec[k] * herdsize[count]
+        finalAnswer &lt;- finalAnswer + answer
+        count &lt;- count + 1
+    }
+
+    return(herdsize)
+}
+baseToNumeric(&quot;1010&quot;, 2)
+</code></pre>
+
+<pre><code>## Error: non-numeric argument to binary operator
+</code></pre>
+
+<h3>As a loop</h3>
+
+<pre><code class="r">convertAsALoop &lt;- function(Nvec, b) {
+    # Initial state
+    sheepCount &lt;- 0
+    boxSize &lt;- 1
+
+    for (k in length(Nvec):1) {
+        sheepCount &lt;- sheepCount + boxSize * Nvec[k]
+        boxSize &lt;- boxSize * b
+    }
+
+    return(sheepCount)
+}
+convertAsALoop(1010, 2)
+</code></pre>
+
+<pre><code>## [1] 1010
 </code></pre>
 
 </body>

@@ -232,6 +232,135 @@ blastoffRepeat(5)
 <pre><code>## 5  4  3  2  1  Blastoff!
 </code></pre>
 
+<pre><code class="r">getData &lt;- function(N) {
+    readline(&quot;Press Enter when you are ready:&quot;)
+    result &lt;- rep(0, N)
+    for (k in 1:N) {
+        Sys.sleep(runif(1, min = 1, max = 5))
+        before &lt;- Sys.time()
+        readline(&quot;Press Enter:&quot;)
+        after &lt;- Sys.time()
+        delay &lt;- as.numeric(after - before)
+        cat(rep(&quot;\n&quot;, 20))
+        result[k] &lt;- delay
+
+    }
+    return(result)
+}
+getData(5)
+</code></pre>
+
+<pre><code>## Press Enter when you are ready:
+## Press Enter:
+## 
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+## Press Enter:
+## 
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+## Press Enter:
+## 
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+## Press Enter:
+## 
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+## Press Enter:
+## 
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+##  
+## 
+</code></pre>
+
+<pre><code>## [1] 9.060e-05 6.557e-05 7.510e-05 7.606e-05 7.868e-05
+</code></pre>
+
 </body>
 
 </html>

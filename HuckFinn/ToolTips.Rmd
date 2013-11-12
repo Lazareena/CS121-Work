@@ -1,0 +1,16 @@
+<style>
+.hiword {background:pink;}
+</style>
+
+This <span class='hiword' title='This one!'>set of words</span> has a tooltip.
+
+```{r results="asis"}
+
+formatWord <- function(w, tt, st) {
+                   paste("<span chrs='", class,"'title= '", 
+                    
+                    title</span>",sep='') 
+                    
+                
+}
+```
