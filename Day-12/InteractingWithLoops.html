@@ -358,7 +358,25 @@ getData(5)
 ## 
 </code></pre>
 
-<pre><code>## [1] 9.060e-05 6.557e-05 7.510e-05 7.606e-05 7.868e-05
+<pre><code>## [1] 7.439e-05 9.584e-05 8.011e-05 7.558e-05 7.033e-05
+</code></pre>
+
+<pre><code class="r">drawDistribution &lt;- function(fun = dbeta, param1 = 1, param2 = 0.5, xlim = c(0, 
+    1), xdata = NULL) {
+    x &lt;- seq(xlim[1], xlim[2], length = 200)
+    y &lt;- fun(x, param1, param2)
+    # Get rid of points not in the domain of the distribution
+    keep &lt;- is.finite(y)
+    y &lt;- y[keep]
+    x &lt;- x[keep]
+    plot(x, y, type = &quot;l&quot;, xlim = xlim, lwd = 2, col = &quot;red&quot;, ylim = c(0, max(y)), 
+        ylab = &quot;Probability Density&quot;, xlab = &quot;x&quot;, bty = &quot;n&quot;)
+    if (!is.null(xdata)) {
+        points(xdata, rep(0, length(xdata)), pch = 20, col = rgb(0, 0, 0, 0.1))
+        dens &lt;- density(xdata)
+        lines(dens$x, dens$y)
+    }
+}
 </code></pre>
 
 </body>

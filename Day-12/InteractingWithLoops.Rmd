@@ -65,5 +65,3 @@ getData <- function(N) {
 getData(5)
 ```
 
-
-
