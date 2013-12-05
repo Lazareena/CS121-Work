@@ -10,7 +10,7 @@ Here's the implementation in R:
 ```{r}
 f <- function(x){(x^2) + x}
 
-Df <- D((x^2) ~ x)
+Df <- D((x^2) + x ~ x)
 
 evalD <- function(f, x) {
     h <- 1e-08  # 'Small h'
