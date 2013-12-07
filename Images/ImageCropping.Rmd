@@ -33,14 +33,7 @@ blue  <- puppy[,,3]
 
 weirdPuppy <- array( c(green,blue,red), dim=c(dim(red),3))
 framed <- cbind( red[,1:20], red , red[,197:216] )
-canvas(x=c(1,40+216),y=c(1,198), asp=1)
 
-rasterImage(framed, 1, 1,216+40, 198)
-```
-```{r}
-red <- puppy[,,1]
-framed <- cbind( red[,1:20], red, red[,197:216] )
-canvas(x=c(1,40+216),y=c(1,198), asp=1)
 framed2 <- rbind( framed[1:20,], framed, framed[179:198,])
 canvas(x=c(1,40+216),y=c(1,40+198), asp=1)
 rasterImage(framed2, 1, 1, 40+216, 40+198)
