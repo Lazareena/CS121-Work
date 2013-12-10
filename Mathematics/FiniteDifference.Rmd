@@ -4,13 +4,13 @@
 require(mosaic)
 ```
 
-My function is $f(x) = (x^2) + x$
+My function is $f(x) = e^{-x/3} \ cos(x)$
 
 Here's the implementation in R:
 ```{r}
-f <- function(x){(x^2) + x}
+f <- function(x){exp(-x/3)*cos(x)}
 
-Df <- D((x^2) + x ~ x)
+Df <- D(exp(-x/3)*cos(x) ~ x)
 
 evalD <- function(f, x) {
     h <- 1e-08  # 'Small h'
@@ -19,14 +19,107 @@ evalD <- function(f, x) {
 
 i <- function(x){evalD(f,x)}
 j <- function(x){Df(x)}
-plotFun(i(x)~x, add=FALSE, xlim=range(-100000000, 100000000), ylim=NULL, col='red')
-plotFun(j(x)~x, add=TRUE, xlim=range(-100000000,100000000), ylim=NULL, col='blue')
+plotFun(i(x)~x, x.lim= range(-1e-08, 1e-08), col='red')
+plotFun(j(x)~x, x.lim= range(-1e-08, 1e-08), col='blue', add=TRUE)
 
-plotFun(i(x)-j(x)~x, add=FALSE,xlim=range(-100000000,100000000), ylim=NULL, col='blue' )
+plotFun(i(x)-j(x)~x, add=FALSE, x.lim= range(-1e-08, 1e-08), col='blue' )
 ```
+The finite difference computation seems a fairly good approximation. The difference between both the functions are close to zero for most values of x. 
 
 ## Task II
 
 ```{r}
+f <- function(x){exp(-x/3)*cos(x)}
+
+evalD2 <- function(f, x, h=1e-8) {
+    return(function(x){(f(x + h) - f(x - h))/(2 * h)})
+}
+afun <- evalD2(f,h=1e-20)
+bfun <- evalD2(f,h=1e-15)
+cfun <- evalD2(f,h=1e-10)
+dfun <- evalD2(f,h=1e-5)
+efun <- evalD2(f,h=0.1)
+ffun <- evalD2(f,h=1)
+
+Df <- D(exp(-x/3)*sin(x) ~x)
+j <- function(x){Df(x)}
 
 ```
+
+```{r}
+plotFun(afun(x)~x, add=FALSE, x.lim= range(-1,1), col='green')
+plotFun(j(x)~x, add=TRUE,  col='blue')
+```
+
+```{r}
+plotFun(bfun(x)~x, add=FALSE, x.lim= range(-1, 1), col='yellow')
+plotFun(j(x)~x, add=TRUE,  col='blue')
+```
+
+```{r}
+plotFun(cfun(x)~x, add=FALSE, x.lim= range(-1, 1),  col='darkviolet')
+plotFun(j(x)~x, add=TRUE, col='blue')
+```
+
+```{r}
+plotFun(dfun(x)~x, add=FALSE, x.lim= range(-1, 1),  col='pink')
+plotFun(j(x)~x, add=TRUE, col='blue')
+```
+
+```{r}
+plotFun(efun(x)~x, add=FALSE, x.lim= range(-1, 1), col='red')
+plotFun(j(x)~x, add=TRUE, col='blue')
+```
+
+```{r}
+plotFun(ffun(x)~x, add=FALSE, x.lim= range(-1,1), col='greenyellow')
+plotFun(j(x)~x, add=TRUE, col='blue')
+```
+
+#Task III
+```{r}
+evalD3 <- function(f, x) {
+    h <-1e-8*abs(x)
+    return((f(x + h) - f(x - h))/(2 * h))
+}
+evalD3fun <- function(x){evalD3(f,x)}
+plotFun(evalD3fun(x)~x, x.lim= range(-1, 1), add=FALSE, col='red')
+plotFun(j(x)~x, add=TRUE, col='blue')
+
+
+evalD4 <- function(f, x) {
+    h <-1e-8*pmax(1,abs(x)) 
+    return((f(x + h) - f(x - h))/(2 * h))
+}
+
+evalD4fun <- function(x){evalD4(f,x)}
+plotFun(evalD4fun(x)~x, x.lim= range(-1, 1), add=FALSE, col='red')
+plotFun(j(x)~x, add=TRUE, col='blue')
+```
+
+For function evalD3, because h= 1e-8*abs(x), the derivatives for x values zero and lower will not be computed.
+
+
+#Task IV
+```{r}
+f <- function(x){exp(-x/3)*cos(x)}
+
+evalD <- function(f, x) {
+    h <- 1e-08  # 'Small h'
+    return((f(x + h) - f(x - h))/(2 * h))
+}
+
+myD <- function(f) {
+    return(function(x) evalD(f, x))
+}
+```
+
+Task V
+
+
+
+
+
+
+
+
