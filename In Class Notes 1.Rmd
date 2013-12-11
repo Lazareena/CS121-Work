@@ -1,0 +1,625 @@
+```{r}
+#definition
+```
+
+```{r}
+reverse <- function(input) {
+ return( unlist(input)[length(input):1] )
+}
+```
+
+```{r}
+reverser <- function(x){
+Alpha <- strsplit(x, split= NULL)
+Beta <- rev(Alpha[[1]])
+return(paste(Beta,collapse=""))
+}
+```
+
+```{r}
+scrambler <- function(x){
+Alpha <- strsplit(x, NULL)
+Beta <- sample(Alpha[[1]])
+return(paste(Beta,collapse=""))
+ }
+```
+
+```{r}
+VowelBleeper <- function(input) {
+supersub <- gsub("[aeiou]","*",input)
+return(supersub)
+}
+VowelBleeper("dog")
+```
+
+```{r}
+Cypher <- function(input) {
+sub <- gsub("[e]","3",input)
+sub2 <- gsub("[o]","0",sub)
+sub3 <- gsub("[s]","5",sub2)
+sub4 <- gsub("[g]","9",sub3)
+return(sub4)
+}
+Cypher("go")
+```
+
+```{r}
+L33t<- function(input) {
+sub <- chartr("e","3",input)
+sub2 <- chartr("o","0",sub)
+sub3 <- chartr("s","5",sub2)
+sub4 <- chartr("g","9",sub3)
+return(sub4)
+}
+L33t("go")
+```
+
+reserved words= NA Inf NaN NULL TRUE FALSE function
+grep gsub regexp nchar length strsplit unlist factorial
+
+```{r}
+myfactorial <- function(n) { 
+  res <- 0
+  for(k in 0:n){
+  res <- res + k
+  }
+  return(res)
+  }
+```
+
+findScrable <- function(letters) {
+for (k in 1:length(letters)) {
+words <- words [grep(letters[k],words)]
+if(length(words)<10) break
+}
+return(words)
+}
+findScrable(c("b","n","r","x","a","c","z","q"))
+ 
+fib <- function(n) { 
+current <- 1
+beforeIt <- 0
+for(k in 1:n) {
+tmp <- current + beforeIt 
+beforeIt <- current 
+current <- tmp
+}
+return(current)
+}
+
+fib <- function(n) {
+if( n < 0 | round(n) !=n){
+return(NA)
+}
+sofar=c(0,1)
+for(k in 3:n) {
+sofar[k] <- sofar[k-1] + sofar [k-2]
+}
+return(sofar)
+}
+
+guess <- rep(TRUE, 100)
+for(k in 2:100)
+guess[(1:100)%%k == 0&(1:100)>k] <- FALSE
+}
+return(which(guess))
+
+primeSieve<- function(n) {
+guess <- rep(TRUE,n)
+inds<- 1:n
+for (k in 2:n) {
+guess[(ind%%k)== 0 & inds>k)] <- FALSE
+}
+return(which(guess))
+}
+
+pigLatinRule <- function(word){
+res <- 0
+if (grep1"[^aeiou.+$]", word)) {
+res <- "No Vowels"
+}
+break
+if(grep1(^aeiou+$, word){
+res <- "Consonant Start"
+else{
+res <- "Vowel Start"}
+return(res)
+}
+
+Rule 1 <- funvtion(word)
+
+syntax structure 
+for while repeat 
+
+for (k in 1:something)
+function(,,){something}
+
+while(logical x){changes x}
+repeat{something, there needs to be a break}
+
+looping algorithm 
+-> setting up a state 
+-> loop- state update
+       - termination 
+-> do something with the state
+
+mySum <- function(v) {
+         sofar<-0 
+         k<-1
+         for (sofar <- sofar+ v[k]){
+         k <- k+1
+         if (k==length(v)) break
+         }
+         return(sofar)
+}
+
+mySum <- function(v){
+         sofar <- 0
+         k <- 1
+         repeat{
+         sofar <- sofar + v[k]
+         k <- k + 1
+         
+         if
+         (k== (length(v) + 1)) break
+         }
+         return(sofar)
+}
+
+mySumWhile <- function(v){
+              sofar <- 0
+              k <- 1
+              while
+              (k !<= (length(v)+1) )
+              
+              sofar <- sofar + v[k]
+              k <- k + 1
+              
+              return(sofar)
+           }
+
+mySumFor <- function(v) {
+            sofar <- 0
+            for(k in 1: length(v))
+            sofar <- sofar + v[k]
+            
+            return(sofar)
+}
+
+myRunningSum <- function(v) {
+                sofar <- 0
+                res <- c()
+                for (k in 1: length(v)) {
+                sofar <- sofar + v[k]
+                res <- c(res, sofar)
+                }
+                return(res)
+               }
+               
+myRunningSum <- function(v) {
+                sofar <- 0
+                res <- c()
+                for (k in v) {
+                sofar <- sofar + k
+                res <- c(sofar, res)
+                }
+                return(res)
+               }
+               
+ 
+myUnique <- function(v) {
+            already <- c()
+            for (k in v) {
+            if (k %in% already) {
+            already <- c(already,"***")
+            } else{
+            already <- c(already,k)
+          }
+          }
+          return(already)
+          }
+```{r}
+toBase <- function(Z,b) {
+          sofar <- c()
+          repeat{
+          r <- Z%%b
+          sofar <- c(sofar,r)
+          Z <- (Z-r)/b
+
+          if (Z==0) break
+          }
+          
+          return(sofar)
+          }
+```          
+Given a character vector of digits and a numerical base
+
+```{r}
+baseToNumeric <- function(Nvec,b) {
+  howMany <- length(Nvec)
+  herdsize <- b^((howMany-1):0)
+  return(sum(as.numeric(Nvec)*herdsize))
+} 
+
+```
+
+### As a loop
+```{r}
+convertAsALoop <- function(Nvec,b) {
+#Initial state
+sheepCount <- 0
+boxSize <- 1
+
+for( k in length(Nvec):1){
+ sheepCount <- sheepCount + boxSize*Nvec[k]
+ boxSize <- boxSize*b 
+ }
+ 
+ return(sheepCount)
+}
+```
+ 
+ 
+```{r}
+blastoffWhile <- function(time){
+       while(time!=0){
+         Sys.sleep(1)
+         cat(time,"")
+         time <- time -1 
+       }
+       Sys.sleep(1)
+       cat("Blastoff!")
+}
+
+```
+
+
+```{r}
+blastoffWhile <- function(time) { # Time is a pos. integer in seconds
+  while (time != 0){
+    Sys.sleep(1)
+    cat(time,"\n")
+    time <- time -1
+  }
+  Sys.sleep(1)
+  cat("Blastoff!!!!")
+  }
+
+```
+
+```{r}
+countdown <- function(k) {
+   system("say five")
+   Sys.sleep(1)
+   system("say four")
+   Sys.sleep(1)
+   system("say three")
+   Sys.sleep(1)
+   system("say blastoff!")
+}
+```
+
+```{r}
+countdown <- function(time) {
+ 
+   for (k in time:1) {
+   starttime <- Sys.time()
+   system(paste("say",k))
+   now <- Sys.time()
+   Sys.sleep(1 - as.numeric(now-starttime))
+   }
+   system("say blastoff!")
+}
+```
+
+```{r}
+getData <- function(N){
+for(k in 1:10){
+before <- Sys.time()
+readline("Press return")
+after <- Sys.time()
+delay <- as.numeric(after-before)
+cat(rep("\n",20))
+result[k] <- delay
+Sys.sleep(runif(1,min=1.max=5))
+     }
+return(result)
+ }
+```
+
+-object names
+ x<- 7
+ sqrt(x)
+-operators/function
+name(3,7,col="red")
+==()
+-arguments
+-control structures
+loops: for while repeat if(){ } else { } break continue
+-function
+packages up, myFun<- function(x,y,z=1){...}
+-kinds of things
+ class(thing) vectors lists dataframe numeric charaterstrings time
+-indexing 
+ v[ ] v[1:3] v[[]] [-1] v[c(TRUE,FALSE,FALSE,..)]
+
+environment
+list(a=1, b="hello")
+
+y <-"hello"
+with(globalenv(),y)
+
+ls(globalenv())
+
+y <- "hello"
+get("y",globalenv())
+assign("y",90,globalenv())
+assign("44 skadoo",10,globalenv())
+
+ls(baseenv())
+
+sin <- function(x){
+       3*x + 2
+}
+sin(pi)
+
+remove("sin")
+
+current environment <- function invocation environment 
+global environment <-base environment <- 
+
+
+f(x=2)
+f <- function(x){
+g(x+2)
+}
+
+g <- function(x){
+ x^3
+}
+
+
+foo <- 4
+f <- function(x) {
+ foo <- 3
+ g(7)
+}
+g <- function(x) { 
+  foo^3
+}
+
+addEm <- function(v){
+sum <- 0
+for (k in 1:length(v)){
+sum <- sum + v[k]
+}
+return(sum)
+}
+addEm(1:3)
+
+# Reverse a vector, recursively
+
+```{r}
+revrec <- function(v) {
+  if (length(v)==1) return(v)
+  else {
+    c(revrec(v[-1]), v[1])
+  }
+  }
+revrec(c(5,4,3,2,1))
+```
+
+```{r}
+revrec <- function(v) {
+  browser()
+  if (length(v)==1) return(v)
+  else {
+    c(revrec(v[-1]), v[1])
+  }
+  }
+revrec(c(5,4,3,2,1))
+```
+
+searching can be done in 'log base 2(N)'
+
+
+function(v){
+if (length(v)<= 1) return(v)
+mid <- v[ceiling(runif(1,min=2),max=length(v)))]
+mids <- v[v==mid]
+left <- v[lessthan(v,mid)]
+right <- v[lessthan(mid,v)]
+
+}
+
+```{r}
+myD <- function(f){
+  h <- 0.001
+  fprime<- function(x) {(f(x+h)- f(x-h))/h} 
+  return(fprime)
+   
+}
+```
+
+```{r}
+rossD <- function(f,x) {
+      h <- 0.001
+      res <- (f(x+h)-f(x))/h
+      return(res)
+}
+```
+
+```{r}
+myD <- function(f, h=0.0000001 ) {
+  fprime <- function(x) {(f(x+h)-f(x))/h}
+  return(fprime)
+}
+
+
+myD2 <- function(f,h=0.0000001){ 
+  gprime <- myD(f, h=h)
+  eprime <- myD(gprime, h=h)
+  return(eprime)
+   
+}
+```
+
+landscape
+651-295-7487
+
+```{r}
+readImageURL <- function(URL){
+  isJPEG <- grepl("[.jpg$|.jpeg$]",URL)
+  
+  if( isJPEG ) 
+   image <- readJPEG(getURLContent(URL))
+    else
+   image<- readPNG(getURLContent(URL))
+      
+  }
+```
+
+##Plan for the next couple of weeks
+GUI
+manipulate -> shiny
+- one plot
+-Rstudio
+-Control layout limited
+-Run within R
+
+shiny
+-embed in document
+-arbitrary layouts
+-multiple outplots
+ plot text table image
+-Any R
+-Without any R
+Data and graphics
+database operation machine graphics-> maps
+R -> html
+```{r}
+x <- seq(0,1, length=101)
+plot(1:2, ylim= c(0,5), xlim= c(0,1), xlab= "x", ylab= "Prob Density",)
+ plot(1:2, ylim= c(0,5), xlim= c(0,1), xlab= "x", ylab= "Prob Density",type= "n")
+ lines(x, dbeta(x,shape1=1,shape2=2), lwd=1)
+ lines(x, dbeta(x,shape1=1, shape2=4),lwd=2)
+ lines(x, dbeta(x,shape1=4, shape2=2),lwd=3)
+```
+
+```{r}
+drawBeta <- function(a,b,...){ 
+plot(1:2, ylim= c(0,5), xlim= c(0,1), xlab= "x", ylab= "Prob Density",)
+ plot(1:2, ylim= c(0,5), xlim= c(0,1), xlab= "x", ylab= "Prob Density",type= "n")
+lines(x, dbeta(x,a,b),...)
+}  
+```
+
+```{r eval=FALSE}
+betaApp <- function(pts) {
+manipulate( {drawBeta(a,b,col=color);
+             points(pts,rep(0,length(pts)))},
+           a=slider(0,10,initial=1, label="a", step=.2),
+             b= slider(0,10,initial=2, label="BEE", step=.2),
+           color= picker(list("red","blue","green"))
+            )
+}
+```
+
+```{r}
+animals <- list("Animals", list("Domesticated",list("Horse","Cat","Dog")), list("Wild", list("Lion","Tiger","Bear","Moose")))
+
+displayTree(animals)
+```
+
+```{r}
+countries <- ourTree <- list("The World",
+  			list("Non-Continental", list("Fiji","New Zealand")),
+				list("Continental",
+               	  	  list("Africa", list("Ghana", "Kenya", "Morocco")),
+                      list("Americas",
+                      		list("North", list("Canada","Mexico")),
+                            list("South",list("Chile","Bolivia"))),
+                      list("Antarctica"),
+                      list("Asia", 
+                      		list("Thailand", "Bhutan", "Mongolia")),
+                      list("Australia"),
+					  list("Europe",
+                    		list("Slovakia", "Romania"))))
+displayTree(countries)
+```
+
+```{r}
+myUI <- bootstrapPage( 
+  div(class='jumbotron masthead', 
+      h1('The Title of My Page'),
+      p('This will be the very polite introduction to my page')
+      ), 
+  div(class='row span12',
+      
+    div(class='span4',
+        h3('In the first block')
+        ),
+    div(class='span3',
+        h4('I am here, too'),
+        h2('Big Brother')
+        )
+    )
+  )
+  
+```
+
+```{r}
+x<- seq(0,1, length =101)
+plot(1, ylim = c(0,5), xlim = c(0, 1), xlab = "x", ylab = "Prob Density",
+   type="n")
+lines(x, dbeta(x, 1, 2), lwd =1)
+lines(x, dbeta(x, 1, 4), lwd =2)
+lines(x, dbeta(x, 4, 2), lwd =3)
+
+betaDist<- function(a, b, ...){
+  x<- seq(0,1, length =101)
+  plot(1, ylim = c(0,5), xlim = c(0, 1), xlab = "x", ylab = "Prob Density",
+     type="n")
+  lines(x, dbeta(x, a, b), ...)
+}
+
+require(manipulate)
+
+betaApp<- function(pts){
+manipulate( {betaDist(a,b, col=r, lwd=t);
+             points(pts, rep(0,length(pts)))},
+            a =slider(0,10, initial=1, label="a", step=.2),
+            b =slider(0,10, initial=2, label= "b", step=.2),
+            r = picker("black",Ruby="red",OrcSkin="green",SpringWater="blue",
+                       Yellow="yellow", initial = NULL, label="Color"),
+            t =slider(0,4, initial=1.5, label= "Line Thickness", step=.5)
+    )
+}
+```
+
+
+diacolors <- with( small, ifelse(diab==0, alpha("blue",.2), alpha("red",.4)))
+
+diasize <- with(small, ifelse(diab==0, 1,3))
+
+plot(wgt~hgt, data=small, col=diacolors, cex=diasize, pch=20)
+
+computing
+computation from inputs to outputs
+change in state from response to inputs
+
+sum(vector/numeric/logical)
+%% == + - * ^
+function invocation
+f(   )
+
+function(arg list){expression}
+
+function
+is.majority(votes)
+what.percentage(votes)
+name # of votes  percent votes
+
+
+
+
