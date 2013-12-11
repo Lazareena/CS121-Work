@@ -1,0 +1,34 @@
+```{r}
+require(mosaic)
+require(plyr)
+fetchData("COMP121/word-hints.R")
+```
+
+
+###1
+```{r}
+letterProportion <- function(a){
+                  letters <- table(unlist(strsplit(a, split    =NULL)))
+                  
+                  return(letters/length(letters))
+}
+letterProportion("lazareena")
+```
+
+###2
+```{r}
+freqCompare <- function(b, language){
+                 
+              word <- data.frame(letterProportion(b))
+                 
+                 lang <- data.frame(language)          
+        newdata<- setNames(cbind(rownames(lang), lang, row.names = NULL), 
+         c("Var1","langcompare"))
+              
+      comparetable <- join(word,newdata)
+      finaltable<-mutate(comparetable,chisqz=(Freq-langcompare)^2/langcompare )
+  return(finaltable)
+}
+freqCompare("lazareena", English)
+```
+I have the data.frame values for chisq on the second one
